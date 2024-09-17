@@ -45,10 +45,11 @@ namespace eCommerce.Application.System.Users
             var roles = await _userManager.GetRolesAsync(user);
             var claims = new[]
             {
-                new Claim(ClaimTypes.Email,user.Email),
-                new Claim(ClaimTypes.GivenName,user.FirstName),
-                new Claim(ClaimTypes.Role, string.Join(";",roles)),
-                new Claim(ClaimTypes.Name, request.UserName)
+                new Claim("Email", user.Email),
+                new Claim("PhotoUrl", user.PhotoUrl),
+                new Claim("FirstName", user.FirstName),
+                new Claim("Role", string.Join(";",roles)),
+                new Claim("UserName", request.UserName)
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -119,7 +120,8 @@ namespace eCommerce.Application.System.Users
                     UserName = x.UserName,
                     FirstName = x.FirstName,
                     Id = x.Id,
-                    LastName = x.LastName
+                    LastName = x.LastName,
+                    PhotoUrl = x.PhotoUrl,
                 }).ToListAsync();
 
             //4. Select and projection
@@ -147,6 +149,7 @@ namespace eCommerce.Application.System.Users
 
             user = new AppUser()
             {
+                PhotoUrl = request.PhotoUrl,
                 Dob = request.Dob,
                 Email = request.Email,
                 FirstName = request.FirstName,

@@ -17,6 +17,9 @@ namespace eCommerce.ViewModels.System.Users
         [DataType(DataType.Date)]
         public DateTime Dob { get; set; }
 
+        [Display(Name = "Link Ảnh")]
+        public string PhotoUrl {get; set;}
+
         [Display(Name = "Hòm thư")]
         public string Email { get; set; }
 

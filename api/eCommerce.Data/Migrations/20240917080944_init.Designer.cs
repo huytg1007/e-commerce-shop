@@ -12,8 +12,8 @@ using eCommerce.Data.EF;
 namespace eCommerce.Data.Migrations
 {
     [DbContext(typeof(ECommerceDbContext))]
-    [Migration("20240916170842_Init")]
-    partial class Init
+    [Migration("20240917080944_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -271,7 +271,7 @@ namespace eCommerce.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9c29c8ab-4ce1-498b-9687-4197b01d13d1",
+                            ConcurrencyStamp = "a7c7f446-f749-41d2-9f54-d8ea2dd3bd6e",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
@@ -280,8 +280,9 @@ namespace eCommerce.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFv+2i30xToi0QgWY9Laq8ds0kWHfBYR+i4hoUA4oduAJn5HKzwwtHLuGC9kIEgcZA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHmKxTTfpGLutcQnaU3/8ldF9HOuLFsStktB6bKYK03pLqOzwUUPUDlE6uTiIDmJkw==",
                             PhoneNumberConfirmed = false,
+                            PhotoUrl = "https://firebasestorage.googleapis.com/v0/b/e-commerce-website-2a5fc.appspot.com/o/images%2Fprofile-default-icon-2048x2045-u3j7s5nj.png?alt=media&token=10790818-139e-47dc-9feb-5561cd0bd2fc",
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -290,7 +291,7 @@ namespace eCommerce.Data.Migrations
                         {
                             Id = new Guid("3694636f-ff7d-4512-8d2f-15d65b0fbc9f"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9e65b843-78d5-4a84-9d35-8c9f66baf41a",
+                            ConcurrencyStamp = "ede6a842-0efc-4236-b421-4836888bc806",
                             Dob = new DateTime(2021, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "demo@gmail.com",
                             EmailConfirmed = true,
@@ -299,8 +300,9 @@ namespace eCommerce.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "demo@gmail.com",
                             NormalizedUserName = "demo",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMcavU+3aSboSCk5vaZi1dKyem2nxRY7VG43HbjhBcMeI0VO7Bql4AAMJDURy3qtRw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL2L3apg0BJUtJ76DBKoN9yEplG5IYH0V37Rmw5mJ7NmIe8IEliMhddExKA8kNrz6A==",
                             PhoneNumberConfirmed = false,
+                            PhotoUrl = "https://firebasestorage.googleapis.com/v0/b/e-commerce-website-2a5fc.appspot.com/o/images%2Fprofile-default-icon-2048x2045-u3j7s5nj.png?alt=media&token=10790818-139e-47dc-9feb-5561cd0bd2fc",
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "demo"
@@ -309,7 +311,7 @@ namespace eCommerce.Data.Migrations
                         {
                             Id = new Guid("ff1f6f88-d9cf-4a25-9a92-200338d3e51a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e24f1cca-024a-41e9-b0b1-14830b469e38",
+                            ConcurrencyStamp = "b2d9c06f-da14-4942-8bab-ac0974524df1",
                             Dob = new DateTime(2021, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "test@gmail.com",
                             EmailConfirmed = true,
@@ -318,8 +320,9 @@ namespace eCommerce.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "test@gmail.com",
                             NormalizedUserName = "test",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAm6+2uUMKUTjP64aRoDd/7MCD9G60ivhl4W4X2P0L6c/GFEIRpv1F+PcXqZpTo6Dw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFnoEcHCyxm9sAIe9oiNYXi0eakWgVXHlQdeJAsAZG2Mgyridk6y+d6oYL2kWs4oxg==",
                             PhoneNumberConfirmed = false,
+                            PhotoUrl = "https://firebasestorage.googleapis.com/v0/b/e-commerce-website-2a5fc.appspot.com/o/images%2Fprofile-default-icon-2048x2045-u3j7s5nj.png?alt=media&token=10790818-139e-47dc-9feb-5561cd0bd2fc",
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "test"
@@ -660,7 +663,7 @@ namespace eCommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 9, 17, 0, 8, 41, 745, DateTimeKind.Local).AddTicks(1931),
+                            DateCreated = new DateTime(2024, 9, 17, 15, 9, 43, 678, DateTimeKind.Local).AddTicks(770),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,

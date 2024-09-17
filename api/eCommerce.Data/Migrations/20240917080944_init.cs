@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eCommerce.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -485,9 +485,9 @@ namespace eCommerce.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PhotoUrl", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("3694636f-ff7d-4512-8d2f-15d65b0fbc9f"), 0, "9e65b843-78d5-4a84-9d35-8c9f66baf41a", new DateTime(2021, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "demo@gmail.com", true, "Hieu", "Nguyen", false, null, "demo@gmail.com", "demo", "AQAAAAIAAYagAAAAEMcavU+3aSboSCk5vaZi1dKyem2nxRY7VG43HbjhBcMeI0VO7Bql4AAMJDURy3qtRw==", null, false, null, "", false, "demo" },
-                    { new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"), 0, "9c29c8ab-4ce1-498b-9687-4197b01d13d1", new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", true, "Huy", "Trinh", false, null, "admin@gmail.com", "admin", "AQAAAAIAAYagAAAAEFv+2i30xToi0QgWY9Laq8ds0kWHfBYR+i4hoUA4oduAJn5HKzwwtHLuGC9kIEgcZA==", null, false, null, "", false, "admin" },
-                    { new Guid("ff1f6f88-d9cf-4a25-9a92-200338d3e51a"), 0, "e24f1cca-024a-41e9-b0b1-14830b469e38", new DateTime(2021, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "test@gmail.com", true, "Trung", "Phan", false, null, "test@gmail.com", "test", "AQAAAAIAAYagAAAAEAm6+2uUMKUTjP64aRoDd/7MCD9G60ivhl4W4X2P0L6c/GFEIRpv1F+PcXqZpTo6Dw==", null, false, null, "", false, "test" }
+                    { new Guid("3694636f-ff7d-4512-8d2f-15d65b0fbc9f"), 0, "ede6a842-0efc-4236-b421-4836888bc806", new DateTime(2021, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "demo@gmail.com", true, "Hieu", "Nguyen", false, null, "demo@gmail.com", "demo", "AQAAAAIAAYagAAAAEL2L3apg0BJUtJ76DBKoN9yEplG5IYH0V37Rmw5mJ7NmIe8IEliMhddExKA8kNrz6A==", null, false, "https://firebasestorage.googleapis.com/v0/b/e-commerce-website-2a5fc.appspot.com/o/images%2Fprofile-default-icon-2048x2045-u3j7s5nj.png?alt=media&token=10790818-139e-47dc-9feb-5561cd0bd2fc", "", false, "demo" },
+                    { new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"), 0, "a7c7f446-f749-41d2-9f54-d8ea2dd3bd6e", new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", true, "Huy", "Trinh", false, null, "admin@gmail.com", "admin", "AQAAAAIAAYagAAAAEHmKxTTfpGLutcQnaU3/8ldF9HOuLFsStktB6bKYK03pLqOzwUUPUDlE6uTiIDmJkw==", null, false, "https://firebasestorage.googleapis.com/v0/b/e-commerce-website-2a5fc.appspot.com/o/images%2Fprofile-default-icon-2048x2045-u3j7s5nj.png?alt=media&token=10790818-139e-47dc-9feb-5561cd0bd2fc", "", false, "admin" },
+                    { new Guid("ff1f6f88-d9cf-4a25-9a92-200338d3e51a"), 0, "b2d9c06f-da14-4942-8bab-ac0974524df1", new DateTime(2021, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "test@gmail.com", true, "Trung", "Phan", false, null, "test@gmail.com", "test", "AQAAAAIAAYagAAAAEFnoEcHCyxm9sAIe9oiNYXi0eakWgVXHlQdeJAsAZG2Mgyridk6y+d6oYL2kWs4oxg==", null, false, "https://firebasestorage.googleapis.com/v0/b/e-commerce-website-2a5fc.appspot.com/o/images%2Fprofile-default-icon-2048x2045-u3j7s5nj.png?alt=media&token=10790818-139e-47dc-9feb-5561cd0bd2fc", "", false, "test" }
                 });
 
             migrationBuilder.InsertData(
@@ -511,7 +511,7 @@ namespace eCommerce.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "DateCreated", "IsFeatured", "OriginalPrice", "Price" },
-                values: new object[] { 1, new DateTime(2024, 9, 17, 0, 8, 41, 745, DateTimeKind.Local).AddTicks(1931), null, 100000m, 200000m });
+                values: new object[] { 1, new DateTime(2024, 9, 17, 15, 9, 43, 678, DateTimeKind.Local).AddTicks(770), null, 100000m, 200000m });
 
             migrationBuilder.InsertData(
                 table: "Slides",

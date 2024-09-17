@@ -4,7 +4,8 @@ import { loginAPI, registerAPI } from "../api/AuthService";
 import { toast } from "react-toastify";
 import React from "react";
 import axios from "axios";
-import { UserProfile } from "../Models/User";
+import { jwtPayload, UserProfile } from "../Models/User";
+import { jwtDecode } from 'jwt-decode'
 
 type UserContextType = {
   user: UserProfile | null;
@@ -44,13 +45,20 @@ export const UserProvider = ({ children }: Props) => {
     await registerAPI(email, username, password)
       .then((res) => {
         if (res) {
-          localStorage.setItem("token", res?.data.token);
+          const token = res?.data.resultObj;
+          const user = jwtDecode<jwtPayload>(token); // decode your token here
+          localStorage.setItem("token", token);
+          
           const userObj = {
-            userName: res?.data.userName,
-            email: res?.data.email,
+            userName: user.UserName,
+            email: user.Email,
+            photoUrl: user.PhotoUrl,
+            role: user.Role,
+            firstName: user.FirstName,
+            lastName: user.LastName,
           };
           localStorage.setItem("user", JSON.stringify(userObj));
-          setToken(res?.data.token!);
+          setToken(res?.data.resultObj!);
           setUser(userObj!);
           toast.success("Login Success!");
           navigate("/");
@@ -63,13 +71,20 @@ export const UserProvider = ({ children }: Props) => {
     await loginAPI(username, password)
       .then((res) => {
         if (res) {
-          localStorage.setItem("token", res?.data.token);
+          const token = res?.data.resultObj;
+          const user = jwtDecode<jwtPayload>(token); // decode your token here
+          localStorage.setItem("token", token);
           const userObj = {
-            userName: res?.data.userName,
-            email: res?.data.email,
+            userName: user.UserName,
+            email: user.Email,
+            photoUrl: user.PhotoUrl,
+            role: user.Role,
+            firstName: user.FirstName,
+            lastName: user.LastName,
           };
+          console.log(userObj);
           localStorage.setItem("user", JSON.stringify(userObj));
-          setToken(res?.data.token!);
+          setToken(res?.data.resultObj!);
           setUser(userObj!);
           toast.success("Login Success!");
           navigate("/");

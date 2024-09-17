@@ -27,6 +27,9 @@ namespace eCommerce.ViewModels.System.Users
         [Display(Name = "Ngày sinh")]
         public DateTime Dob { get; set; }
 
+        [Display(Name = "Link Ảnh")]
+        public string PhotoUrl { get; set; }
+
         public IList<string> Roles { get; set; }
     }
 }

@@ -1,42 +1,61 @@
-import { Package } from '../../types/package';
-import BrandOne from '../../images/brand/brand-01.svg';
-import BrandTwo from '../../images/brand/brand-02.svg';
-import BrandThree from '../../images/brand/brand-03.svg';
-import BrandFour from '../../images/brand/brand-04.svg';
-import BrandFive from '../../images/brand/brand-05.svg';
-
-const packageData: Package[] = [
-  {
-    logo: BrandOne,
-    name: 'Free package',
-    price: 0.0,
-    invoiceDate: `Jan 13,2023`,
-    status: 'Paid',
-  },
-  {
-    logo: BrandTwo,
-    name: 'Standard Package',
-    price: 59.0,
-    invoiceDate: `Jan 13,2023`,
-    status: 'Paid',
-  },
-  {
-    logo: BrandThree,
-    name: 'Business Package',
-    price: 99.0,
-    invoiceDate: `Jan 13,2023`,
-    status: 'Unpaid',
-  },
-  {
-    logo: BrandFour,
-    name: 'Standard Package',
-    price: 59.0,
-    invoiceDate: `Jan 13,2023`,
-    status: 'Pending',
-  },
-];
+import { useEffect, useState } from 'react';
+import { getUserListPagingAPI } from '../../api/UserService';
+import { toast } from 'react-toastify';
+import { UserProfile } from '../../Models/User';
 
 const TableThree = () => {
+  const [userList, setUserList] = useState<UserProfile[]>();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [pageSize, setPageSize] = useState(5); // Default page size is 5
+
+  const pageSizeOptions = [5, 10, 15, 20]; // Options for page sizes
+
+  const getUserListPaging = async (
+    pageIndex: number,
+    pageSize: number,
+    keyword?: string,
+  ) => {
+    await getUserListPagingAPI(pageIndex, pageSize, keyword)
+      .then((res: any) => {
+        if (res) {
+          setTotalPages(res?.data.resultObj.pageCount);
+          setUserList(res?.data.resultObj.items);
+        }
+      })
+      .catch((e) => toast.warning(`Server error occured: ${e}`));
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handlePageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setPageSize(Number(e.target.value));
+    setCurrentPage(1); // Reset to first page when changing page size
+  };
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(
+        <button
+          key={i}
+          className={`px-4 py-2 rounded ${currentPage === i ? 'bg-blue-500 text-white' : 'bg-gray-200 dark:bg-gray-700'}`}
+          onClick={() => handlePageChange(i)}
+        >
+          {i}
+        </button>,
+      );
+    }
+    return pageNumbers;
+  };
+
+  useEffect(() => {
+    getUserListPaging(currentPage, pageSize);
+    console.log(userList);
+  }, [currentPage, pageSize]);
+
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
@@ -50,13 +69,13 @@ const TableThree = () => {
                 Avatar
               </th>
               <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                Package
+                Name
               </th>
               <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                Invoice date
+                Email
               </th>
-              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                Status
+              <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                Role
               </th>
               <th className="py-4 px-4 font-medium text-black dark:text-white">
                 Actions
@@ -64,44 +83,34 @@ const TableThree = () => {
             </tr>
           </thead>
           <tbody>
-            {packageData.map((packageItem, key) => (
+            {userList?.map((user, key) => (
               <tr key={key}>
-
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                   <div className="flex-shrink-0">
-                    <img src={packageItem.logo} alt="Brand" />
+                    <img
+                      className="w-12 h-12 object-cover rounded-full"
+                      src={user?.photoUrl}
+                      alt="Brand"
+                    />
                   </div>
                 </td>
 
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                   <h5 className="font-medium text-black dark:text-white">
-                    {packageItem.name}
+                    {user?.firstName} {user?.lastName}
                   </h5>
-                  <p className="text-sm">${packageItem.price}</p>
                 </td>
 
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black dark:text-white">
-                    {packageItem.invoiceDate}
-                  </p>
+                  <p className="text-black dark:text-white">{user?.email}</p>
                 </td>
-                
+
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p
-                    className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-                      packageItem.status === 'Paid'
-                        ? 'bg-success text-success'
-                        : packageItem.status === 'Unpaid'
-                        ? 'bg-danger text-danger'
-                        : 'bg-warning text-warning'
-                    }`}
-                  >
-                    {packageItem.status}
-                  </p>
+                  <p className="text-black dark:text-white">{user?.role}</p>
                 </td>
+
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div className="flex items-center space-x-3.5">
-
                     <button className="hover:text-primary">
                       <svg
                         className="fill-current"
@@ -149,13 +158,49 @@ const TableThree = () => {
                         />
                       </svg>
                     </button>
-
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+
+        {/* Pagination Controls */}
+        <div className="flex justify-center mt-4 space-x-2">
+          <button
+            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+
+          {renderPageNumbers()}
+
+          <button
+            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+
+          {/* Combo box for page size selection */}
+          <div className="flex items-center space-x-2">
+            <span>Rows per page:</span>
+            <select
+              className="px-2 py-1 border dark:bg-gray-700 dark:text-white rounded"
+              value={pageSize}
+              onChange={handlePageSizeChange}
+            >
+              {pageSizeOptions.map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -17,7 +17,9 @@ import Buttons from './pages/UiElements/Buttons';
 import DefaultLayout from './layout/DefaultLayout';
 import SignIn from './pages/Authentication/SignIn';
 import ProtectedRoute from './Routes/ProtectedRoute';
+
 import { UserProvider } from './Context/useAuth';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -50,6 +52,20 @@ function App() {
   ) : (
     <>
       <UserProvider>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light" 
+          />
+        <ToastContainer />
+        
         <Routes>
           {/* Route for Login (no DefaultLayout) */}
           <Route index path="/auth/signin" 
