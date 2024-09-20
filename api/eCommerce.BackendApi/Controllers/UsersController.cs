@@ -65,6 +65,20 @@ namespace eCommerce.BackendApi.Controllers
             return Ok(result);
         }
 
+        [HttpPut("photo-url/{id}")]
+        public async Task<IActionResult> UpdatePhotoUrl(Guid id, [FromBody]string photoUrl)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.UpdatePhotoUrl(id, photoUrl);
+            if (!result.IsSuccessed)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
         [HttpPut("{id}/roles")]
         public async Task<IActionResult> RoleAssign(Guid id, [FromBody]RoleAssignRequest request)
         {

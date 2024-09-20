@@ -20,6 +20,8 @@ import ProtectedRoute from './Routes/ProtectedRoute';
 
 import { UserProvider } from './Context/useAuth';
 import { ToastContainer } from 'react-toastify';
+import UserEditForm from './pages/Form/UserEditForm';
+
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -29,6 +31,7 @@ function App() {
     { path: "/", title: "eCommerce Dashboard ", component: <ECommerce />, index: true },
     { path: "/calendar", title: "Calendar ", component: <Calendar /> },
     { path: "/profile", title: "Profile ", component: <Profile /> },
+    { path: "/edit-user", title: "Form Elements ", component: <UserEditForm /> },
     { path: "/forms/form-elements", title: "Form Elements ", component: <FormElements /> },
     { path: "/forms/form-layout", title: "Form Layout ", component: <FormLayout /> },
     { path: "/tables", title: "Tables ", component: <Tables /> },
@@ -36,6 +39,7 @@ function App() {
     { path: "/chart", title: "Basic Chart", component: <Chart /> },
     { path: "/ui/alerts", title: "Alerts ", component: <Alerts /> },
     { path: "/ui/buttons", title: "Buttons ", component: <Buttons /> },
+    
   ];
 
   useEffect(() => {

@@ -48,6 +48,8 @@ namespace eCommerce.Application.System.Users
                 new Claim("Email", user.Email),
                 new Claim("PhotoUrl", user.PhotoUrl),
                 new Claim("FirstName", user.FirstName),
+                new Claim("DoB", user.Dob.ToString()),
+                new Claim("PhoneNumber", user.PhoneNumber),
                 new Claim("Role", string.Join(";",roles)),
                 new Claim("UserName", request.UserName)
             };
@@ -62,6 +64,20 @@ namespace eCommerce.Application.System.Users
 
             return new ApiSuccessResult<string>(new JwtSecurityTokenHandler().WriteToken(token));
         }
+
+        public async Task<ApiResult<bool>> UpdatePhotoUrl(Guid id, string photoUrl)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            user.PhotoUrl = photoUrl;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return new ApiSuccessResult<bool>();
+            }
+            return new ApiErrorResult<bool>("Cập nhật Hình Ảnh không thành công");
+        }
+
 
         public async Task<ApiResult<bool>> Delete(Guid id)
         {

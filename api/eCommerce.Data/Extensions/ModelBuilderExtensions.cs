@@ -110,6 +110,7 @@ namespace eCommerce.Data.Extensions
                 SecurityStamp = string.Empty,
                 FirstName = "Huy",
                 LastName = "Trinh",
+                PhoneNumber = "0358663632",
                 Dob = new DateTime(2020, 01, 31)
             });
 
@@ -126,6 +127,7 @@ namespace eCommerce.Data.Extensions
                 SecurityStamp = string.Empty,
                 FirstName = "Hieu",
                 LastName = "Nguyen",
+                PhoneNumber = "0358663121",
                 Dob = new DateTime(2021, 05, 22)
             });
 
@@ -142,6 +144,7 @@ namespace eCommerce.Data.Extensions
                 SecurityStamp = string.Empty,
                 FirstName = "Trung",
                 LastName = "Phan",
+                PhoneNumber = "0988663002",
                 Dob = new DateTime(2021, 05, 22)
             });
 

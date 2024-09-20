@@ -50,12 +50,15 @@ export const UserProvider = ({ children }: Props) => {
           localStorage.setItem("token", token);
           
           const userObj = {
+            id: "",
             userName: user.UserName,
             email: user.Email,
             photoUrl: user.PhotoUrl,
             role: user.Role,
             firstName: user.FirstName,
             lastName: user.LastName,
+            dob: user.DoB,
+            phoneNumber: user.PhoneNumber,
           };
           localStorage.setItem("user", JSON.stringify(userObj));
           setToken(res?.data.resultObj!);
@@ -75,12 +78,15 @@ export const UserProvider = ({ children }: Props) => {
           const user = jwtDecode<jwtPayload>(token); // decode your token here
           localStorage.setItem("token", token);
           const userObj = {
+            id: "",
             userName: user.UserName,
             email: user.Email,
             photoUrl: user.PhotoUrl,
             role: user.Role,
             firstName: user.FirstName,
             lastName: user.LastName,
+            dob: user.DoB,
+            phoneNumber: user.PhoneNumber,
           };
           console.log(userObj);
           localStorage.setItem("user", JSON.stringify(userObj));
