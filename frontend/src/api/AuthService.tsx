@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UserProfileToken } from "../Models/User";
+import { UserProfileToken } from "../types/User";
 import { handleError } from "../Helpers/ErrorHandler";
 
 

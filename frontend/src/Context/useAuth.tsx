@@ -4,7 +4,7 @@ import { loginAPI, registerAPI } from "../api/AuthService";
 import { toast } from "react-toastify";
 import React from "react";
 import axios from "axios";
-import { jwtPayload, UserProfile } from "../Models/User";
+import { jwtPayload, UserProfile } from "../types/User";
 import { jwtDecode } from 'jwt-decode'
 
 type UserContextType = {
@@ -35,7 +35,8 @@ export const UserProvider = ({ children }: Props) => {
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     }
     setIsReady(true);
-  }, []);
+    // console.log("Set token to header: " + token);
+  }, [token]);
 
   const registerUser = async (
     email: string,

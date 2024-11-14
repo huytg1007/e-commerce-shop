@@ -8,7 +8,7 @@ import Calendar from "../pages/Calendar";
 import Profile from "../pages/Profile";
 import FormElements from "../pages/Form/FormElements";
 import FormLayout from "../pages/Form/FormLayout";
-import Tables from "../pages/Tables";
+import Tables from "../pages/UserList";
 import Settings from "../pages/Settings";
 import Chart from "../pages/Chart";
 import Alerts from "../pages/UiElements/Alerts";

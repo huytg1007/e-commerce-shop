@@ -65,10 +65,10 @@ namespace eCommerce.Application.System.Users
             return new ApiSuccessResult<string>(new JwtSecurityTokenHandler().WriteToken(token));
         }
 
-        public async Task<ApiResult<bool>> UpdatePhotoUrl(Guid id, string photoUrl)
+        public async Task<ApiResult<bool>> UpdatePhotoUrl(Guid id, PhotoRequest request)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
-            user.PhotoUrl = photoUrl;
+            user.PhotoUrl = request.PhotoUrl;
 
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)

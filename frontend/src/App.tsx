@@ -11,7 +11,7 @@ import FormElements from './pages/Form/FormElements';
 import FormLayout from './pages/Form/FormLayout';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
-import Tables from './pages/Tables';
+import UserList from './pages/UserList';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import DefaultLayout from './layout/DefaultLayout';
@@ -21,6 +21,7 @@ import ProtectedRoute from './Routes/ProtectedRoute';
 import { UserProvider } from './Context/useAuth';
 import { ToastContainer } from 'react-toastify';
 import UserEditForm from './pages/Form/UserEditForm';
+import ProductList from './pages/ProductList';
 
 
 function App() {
@@ -34,7 +35,8 @@ function App() {
     { path: "/edit-user", title: "Form Elements ", component: <UserEditForm /> },
     { path: "/forms/form-elements", title: "Form Elements ", component: <FormElements /> },
     { path: "/forms/form-layout", title: "Form Layout ", component: <FormLayout /> },
-    { path: "/tables", title: "Tables ", component: <Tables /> },
+    { path: "/user-list", title: "Tables ", component: <UserList /> },
+    { path: "/product-list", title: "Tables ", component: <ProductList /> },
     { path: "/settings", title: "Settings ", component: <Settings /> },
     { path: "/chart", title: "Basic Chart", component: <Chart /> },
     { path: "/ui/alerts", title: "Alerts ", component: <Alerts /> },

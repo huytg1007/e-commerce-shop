@@ -1,5 +1,5 @@
 import axios from "axios";
-import { updateUserInfoRequest, UserProfileToken } from "../Models/User";
+import { updateUserInfoRequest, UserProfileToken } from "../types/User";
 import { handleError } from "../Helpers/ErrorHandler";
 
 const api = "http://localhost:5001/api/";
@@ -38,8 +38,8 @@ export const updateUserInfo = async (id: string, request: updateUserInfoRequest)
 
 export const updateUserPhotoUrl = async (id: string, photoUrl: string) => {
   try {
-    const data = await axios.put<UserProfileToken>(api + "Users/photo-url" + id, {
-      photoUrl
+    const data = await axios.put<UserProfileToken>(api + "Users/photo-url/" + id, {
+      photoUrl: photoUrl
     });
     return data;
   } catch (error) {

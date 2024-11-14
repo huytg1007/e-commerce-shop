@@ -1,3 +1,4 @@
+import { removeDoubleSlashes } from '../Helpers/CommonMethod';
 import { db, auth } from './config';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -8,14 +9,14 @@ export const uploadImage = async (file: any): Promise<string> => {
   try {
     const userId = auth.currentUser?.uid;
     const user = localStorage.getItem("user");
-    console.log(userId)
-    console.log(user)
+    // console.log(userId)
+    // console.log(user)
 
     if (!userId && !user) throw new Error("User not authenticated");
 
     // 1. Upload the image to Firebase Storage
     // console.log(file)
-    const fileName = file.name;
+    const fileName = removeDoubleSlashes(file.name);
     console.log(fileName)
     const storage = getStorage();
     const storageRef = ref(storage, 'images/' + fileName);
@@ -59,78 +60,3 @@ export const changeAvatar = async (fixUrl: string, curRoomId: string) => {
   }
 };
 
-export const changeRoomName = async (newName: string, curRoomId: string) => {
-  try {
-    // 3. Update the user's document in Firestore with the new avatar URL
-    const userDocRef = db.collection('rooms').doc(curRoomId); // Adjust the collection path as needed
-    await userDocRef.update({
-      name: newName,
-    });
-    console.log("Room name updated successfully!");
-
-  } catch (error) {
-    console.error("Error updating room name: ", error);
-  }
-};
-
-// tao keywords cho displayName, su dung cho search
-export const generateKeywords = (displayName: string | undefined) => {
-  // liet ke tat cac hoan vi. vd: name = ["David", "Van", "Teo"]
-  // => ["David", "Van", "Teo"], ["David", "Teo", "Van"], ["Teo", "David", "Van"],...
-
-  if(displayName === undefined) {
-    return;
-  }
-
-  const name = displayName.split(' ').filter((word) => word);
-
-  const length = name.length;
-  let flagArray: boolean[] = [];
-  let result: any[] = [];
-  let stringArray: string[] = [];
-
-  /**
-   * khoi tao mang flag false
-   * dung de danh dau xem gia tri
-   * tai vi tri nay da duoc su dung
-   * hay chua
-   **/
-  for (let i = 0; i < length; i++) {
-    flagArray[i] = false;
-  }
-
-  const createKeywords = (name: string) => {
-    const arrName: string[] = [];
-    let curName = '';
-    name.split('').forEach((letter: string) => {
-      curName += letter;
-      arrName.push(curName);
-    });
-    return arrName;
-  };
-
-  function findPermutation(k: number) {
-    for (let i = 0; i < length; i++) {
-      if (!flagArray[i]) {
-        flagArray[i] = true;
-        result[k] = name[i];
-
-        if (k === length - 1) {
-          stringArray.push(result.join(' '));
-        }
-
-        findPermutation(k + 1);
-        flagArray[i] = false;
-      }
-    }
-  }
-
-  findPermutation(0);
-
-  const keywords = stringArray.reduce((acc: any, cur: string) => {
-    const words = createKeywords(cur);
-    return [...acc, ...words];
-  }, []);
-
-  return keywords;
-};

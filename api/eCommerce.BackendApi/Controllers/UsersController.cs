@@ -66,12 +66,12 @@ namespace eCommerce.BackendApi.Controllers
         }
 
         [HttpPut("photo-url/{id}")]
-        public async Task<IActionResult> UpdatePhotoUrl(Guid id, [FromBody]string photoUrl)
+        public async Task<IActionResult> UpdatePhotoUrl(Guid id, [FromBody]PhotoRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await _userService.UpdatePhotoUrl(id, photoUrl);
+            var result = await _userService.UpdatePhotoUrl(id, request);
             if (!result.IsSuccessed)
             {
                 return BadRequest(result);
